@@ -18,7 +18,7 @@ You can deploy this to your own Cloudflare account for free in just a few minute
 
 ### 1. Create a Cloudflare Worker
 1. Log in to your [Cloudflare Dashboard](https://dash.cloudflare.com/).
-2. Navigate to **Workers & Pages** -> **Overview** from the left sidebar.
+2. Navigate to **Compute** -> **Workers & Pages** from the left sidebar.
 3. Click **Create Application**, then **Start with Hello World!**.
 4. Name your worker (e.g., `moe-iptv`) and click **Deploy**.
 5. Click **Edit code**. Clear the default code, paste the contents of `worker.js` from this repository, and click **Save and deploy**.
