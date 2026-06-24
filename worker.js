@@ -904,7 +904,7 @@ function renderCategories() {
         <div class="cat-avatar w-8 h-8 rounded-full \${colorClass} flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-inner">\${initial}</div>
         <div class="cat-text-container flex flex-col overflow-hidden">
             <span class="text-sm font-medium text-white truncate">\${displayGroupName}</span>
-            <span class="text-[11px] text-gray-500 mt-0.5">\text{\${groupChannels.length}} Channels</span>
+            <span class="text-[11px] text-gray-500 mt-0.5">\${groupChannels.length} Channels</span>
         </div>
         \`;
         
@@ -969,7 +969,7 @@ function renderChannels(channelsArray) {
             const safeLogoUrl = ch.logo ? '?action=logo&url=' + encodeURIComponent(ch.logo) : '';
             const logoHtml = ch.logo
                 ? \`<img src="\${safeLogoUrl}" loading="lazy" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\\'text-xs font-bold\\'>\${ch.name.charAt(0)}</span>'"/>\`
-                : \`<span class="text-xs font-bold text-gray-400">\text{\${ch.name.charAt(0)}}</span>\`;
+                : \`<span class="text-xs font-bold text-gray-400">\${ch.name.charAt(0)}</span>\`;
             
             const isFav = getFavorites().includes(ch.id);
             const starColor = isFav ? "text-[#E87A31]" : "text-gray-600 hover:text-[#E87A31]";
@@ -1300,7 +1300,7 @@ function renderSources() {
         const count = globalChannelsData.filter(ch => ch.source === src.name).length;
         item.className = "source-item flex items-start gap-3 p-3 rounded-xl";
         item.innerHTML = \`
-        <div class="w-10 h-10 rounded-full bg-[#2D5BE3] flex items-center justify-center text-white text-sm font-bold shrink-0 mt-1 shadow-inner">\text{\${idx + 1}}</div>
+        <div class="w-10 h-10 rounded-full bg-[#2D5BE3] flex items-center justify-center text-white text-sm font-bold shrink-0 mt-1 shadow-inner">\${idx + 1}</div>
         <div class="flex-1 min-w-0 flex flex-col gap-2">
             <div class="flex items-center gap-2">
                 <input class="src-name w-full bg-[#272733] rounded-xl px-4 py-3 text-sm text-white font-medium border border-transparent focus:border-gray-600 focus:outline-none" 
