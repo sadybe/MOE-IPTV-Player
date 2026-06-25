@@ -8,7 +8,7 @@ export default {
       // ==========================================
       const LOGIN_PASSWORD = env.LOGIN_PASSWORD || "Admin@123"; 
       const COOKIE_SECRET = env.COOKIE_SECRET || "s3t-th1s-1n-env-v4rs";
-      const AUTH_COOKIE_NAME = "yuzunet_auth_token";
+      const AUTH_COOKIE_NAME = "moeiptv_auth_token";
       const AUTH_COOKIE_MAX_AGE = 60 * 60 * 24 * 30; 
       const DEFAULT_M3U_URL = "https://raw.githubusercontent.com/Mohammad-Aali/MOE-IPTV-Player/main/default-playlist.m3u";
 	  
@@ -202,24 +202,24 @@ export default {
       }
 
       if (action === 'test-stream' && request.method === 'POST') {
-          const formData = await request.formData();
-          const target = formData.get('url');
-          if (!target) return new Response("DEAD", { status: 404, headers: corsHeaders });
+        const formData = await request.formData();
+        const target = formData.get('url');
+        if (!target) return new Response("DEAD", { status: 404, headers: corsHeaders });
 
-          try {
-              const res = await fetch(target, {
-                  method: 'GET',
-                  headers: { 
-                      'Range': 'bytes=0-200', 
-                      'User-Agent': 'VLC/3.0.16 LibVLC/3.0.16' 
-                  },
-                  cf: { cacheTtl: 0 }
-              });
-              if (res.ok || res.status === 206 || res.status < 400) {
-                  return new Response("ALIVE", { status: 200, headers: corsHeaders });
-              }
-          } catch(e) {}
-          return new Response("DEAD", { status: 404, headers: corsHeaders });
+        try {
+            const res = await fetch(target, {
+                method: 'GET',
+                headers: { 
+                    'Range': 'bytes=0-200', 
+                    'User-Agent': 'VLC/3.0.16 LibVLC/3.0.16' 
+                },
+                cf: { cacheTtl: 0 }
+            });
+            if (res.ok || res.status === 206 || res.status < 400) {
+                return new Response("ALIVE", { status: 200, headers: corsHeaders });
+            }
+        } catch(e) {}
+        return new Response("DEAD", { status: 404, headers: corsHeaders });
       }
 
       if (action === 'save-cleaned-source' && request.method === 'POST') {
@@ -350,7 +350,7 @@ function getLoginHTML() {
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login - YuzuNet TV</title>
+<title>Login - MOE IPTV</title>
 <meta name="robots" content="nofollow, noindex" />
 <script src="https://cdn.tailwindcss.com"><\/script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -396,7 +396,7 @@ input { border: none !important; box-shadow: none !important; outline: none !imp
 <rect id="eye-left" x="38" y="44" width="6" height="6" rx="3" fill="#FFFFFF" class="mascot-eye" />
 <rect id="eye-right" x="56" y="44" width="6" height="6" rx="3" fill="#FFFFFF" class="mascot-eye" />
 </svg>
-<h1 class="text-2xl font-semibold tracking-tight">YuzuNet TV</h1>
+<h1 class="text-2xl font-semibold tracking-tight">MOE IPTV</h1>
 <p class="text-sm text-gray-400 mt-2">Enter your password to access</p>
 </div>
 <form id="loginForm" class="space-y-5">
@@ -459,7 +459,7 @@ function getCleanerHTML() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Playlist Cleaner - YuzuNet</title>
+<title>Playlist Cleaner - MOE IPTV</title>
 <meta name="robots" content="nofollow, noindex" />
 <script src="https://cdn.tailwindcss.com"><\/script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -671,7 +671,7 @@ function getHTML() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YuzuNet TV Player</title>
+<title>MOE IPTV Player</title>
 <meta name="robots" content="nofollow, noindex" />
 <script src="https://cdn.tailwindcss.com"><\/script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"><\/script>
@@ -834,7 +834,7 @@ box-shadow: 0 0 16px rgba(255,255,255,0.8);
 </div>
 <div id="category-panel" class="w-[260px] min-w-[260px] shrink-0 flex flex-col py-10 px-4 relative z-10">
 <div class="mb-6 px-4">
-<h2 id="category-header" class="text-xl font-bold tracking-tight whitespace-nowrap">YuzuNet Live TV</h2>
+<h2 id="category-header" class="text-xl font-bold tracking-tight whitespace-nowrap">MOE IPTV Live TV</h2>
 <p id="total-channels-count" class="text-xs text-gray-500 mt-1">Loading ...</p>
 </div>
 <div id="category-list" class="flex-1 overflow-y-auto space-y-3 pr-2 pb-4 pt-1 px-1">
@@ -967,7 +967,6 @@ function processData() {
     if (firstBtn) firstBtn.click();
 }
 
-// ثبات کامل ساختار گرافیکی آواتار دسته‌بندی‌ها بدون تداخل متنی
 function renderCategories() {
     categoryListEl.innerHTML = '';
     const colors = ['bg-blue-500','bg-red-500','bg-green-500','bg-yellow-500','bg-purple-500','bg-pink-500','bg-indigo-500'];
@@ -982,7 +981,6 @@ function renderCategories() {
         const btn = document.createElement('button');
         btn.className = "category-row w-full text-left p-3 flex items-center gap-4 focus:outline-none cursor-pointer";
         
-        // بازنویسی استاتیک آواتار دایره‌ای دسته‌ها جهت ایزوله‌سازی کامل
         btn.innerHTML = \`
         <div class="cat-avatar w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-inner \${colorClass}">\${initial}</div>
         <div class="cat-text-container flex flex-col overflow-hidden">
@@ -997,7 +995,7 @@ function renderCategories() {
             activeCategoryBtn = btn;
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('is-active'));
             navHome.classList.add('is-active');
-            categoryHeader.innerText = "YuzuNet Live TV";
+            categoryHeader.innerText = "MOE IPTV Live TV";
             document.getElementById('total-channels-count').innerText = \`\${globalChannelsData.length} Channels\`;
             searchInput.value = '';
             renderChannels(groupChannels);
@@ -1062,7 +1060,6 @@ function renderChannels(channelsArray) {
             if (ch.is_hd) badgesHtml += '<span class="text-[8px] flex items-center font-bold bg-white text-black px-1 rounded-sm shadow-sm">HD</span>';
             if (ch.has_epg) badgesHtml += '<span class="text-[8px] flex items-center font-bold bg-gray-600 text-white px-1 rounded-sm shadow-sm">EPG</span>';
             
-            // اصلاح و بستن تگ بج با استایل مجزا برای عدم تداخل با رندر منوهای بالایی
             const sourceBadge = ch.source
                 ? \`<span class="text-[8px] flex items-center font-bold bg-blue-900/60 text-blue-300 px-1.5 py-0.5 rounded-sm truncate max-w-[90px] shadow-sm">\${ch.source}</span>\`
                 : '';
